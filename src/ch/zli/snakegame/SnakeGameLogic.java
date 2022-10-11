@@ -60,7 +60,7 @@ public class SnakeGameLogic {
         // lets the snake move, gain points, change level, grow and eat if theres a food
         if(level.SnakemoveAndEat()){
             points++;
-            if(points % 5 == 0 && points != 0){
+            if(points % 10 == 0 && points != 0){
                 levelHeight++;
                 levelUp();
             }
