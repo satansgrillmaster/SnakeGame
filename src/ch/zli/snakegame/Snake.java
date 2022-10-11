@@ -71,7 +71,7 @@ public class Snake {
         g.setColor(Color.BLUE);
         //g.drawImage(img.getScaledInstance(square - 4,square - 4,1), this.snakePos.get(0).getX() * square + (offset / 2)
         //        , this.snakePos.get(0).getY() * square + (offset / 2), null);
-        g.fillArc(this.snakePos.get(0).getX() * square + (offset / 2), this.snakePos.get(0).getY() * square + (offset / 2), square, square, 0, 270);
+        g.fillArc(this.snakePos.get(0).getX() * square + (offset / 2), this.snakePos.get(0).getY() * square + (offset / 2), square, square, 0, 360);
     }
 
     /**

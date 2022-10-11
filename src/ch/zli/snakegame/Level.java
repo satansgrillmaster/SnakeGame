@@ -20,7 +20,7 @@ public class Level {
      * Constructor for the Level
      */
     public Level(){
-        this(0, 1);
+        this(0, 3);
     }
 
     /**

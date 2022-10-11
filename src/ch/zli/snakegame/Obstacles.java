@@ -40,7 +40,7 @@ public class Obstacles {
             this.obstaclesPos.add(new Coord(i, 0));
             this.obstaclesPos.add(new Coord(i, 10));
         }*/
-        this.obstaclesPos.add(new Coord(10, 10));
+        // this.obstaclesPos.add(new Coord(10, 10));
 
         for (int i = 0; i < numberOfRandomObstacles; i++) {
 
