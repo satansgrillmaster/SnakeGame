@@ -130,8 +130,8 @@ public class SwingGameGui extends JFrame implements RedrawListener {
 		sceenePanel.setBorder(BorderFactory.createEtchedBorder());
 		statusPanel.setBorder(BorderFactory.createEtchedBorder());
 
-		sceenePanel.setPreferredSize(new Dimension(256, 256));
-		statusPanel.setPreferredSize(new Dimension(150, 0));
+		sceenePanel.setPreferredSize(new Dimension(512, 512));
+		statusPanel.setPreferredSize(new Dimension(250, 0));
 
 		add(statusPanel, SquareLayout.LEFTOVER);
 		add(sceenePanel, SquareLayout.SQUARE);

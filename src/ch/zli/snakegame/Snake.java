@@ -3,6 +3,8 @@ package ch.zli.snakegame;
 import java.awt.Graphics2D;
 import java.awt.Color;
 
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class Snake {
     private List<Coord> snakePos;
     private Direction direction;
     private Direction oldDirection;
+    private BufferedImage headImg;
     private boolean eat;
 
     /**
@@ -28,54 +31,83 @@ public class Snake {
         this.direction = Direction.down;
         this.oldDirection = Direction.down;
         this.eat = false;
-
         for(int $i = 0; $i < 4; $i++){
             this.snakePos.add(new Coord(5, 5 - $i));
         }
-    }
-
-    /**
-     * Draws the snake with a blue head and green body
-     * @param g is the graphics2D to paint
-     * @param square is the width of a square in the panel
-     * @param offset is the amount of pixel we have left after all squares
-     */
-    public void draw(Graphics2D g, int square, int offset){
-        g.setColor(Color.GREEN);
-        BufferedImage img = null;
-        String imgPath = "src/ch/zli/snakegame/body.png";
-
         try{
-            img = ImageIO.read(new File(imgPath));
+            headImg = ImageIO.read(new File("src/ch/zli/snakegame/imgs/snakehead.png"));
+
 
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
+    }
+
+    /**
+     * Draws the snake
+     * @param g2d is the graphics2D to paint
+     * @param fieldSizeWidth is the width of a field in the panel
+     * @param fieldSizeHeight is the height of a field in the panel
+     * @param offsetx is the amount of pixel we have left after all fields
+     * @param offsety is the amount of pixel we have left after all fields
+     */
+    public void draw(Graphics2D g2d, int fieldSizeWidth,int fieldSizeHeight, int offsetx, int offsety){
+        g2d.setColor(Color.GREEN);
 
         for (Coord bodypart : snakePos) {
+
             if (bodypart != this.snakePos.get(0)) {
-                g.drawImage(img.getScaledInstance(square - 4,square - 4,1), bodypart.getX() * square + (offset / 2)
-                        , bodypart.getY() * square + (offset / 2), null);
+                g2d.setColor(Color.BLACK);
+                g2d.fillRect(
+                        bodypart.getX() * fieldSizeWidth + (offsetx / 2),
+                        bodypart.getY() * fieldSizeHeight + (offsety / 2),
+                        fieldSizeWidth - 5,
+                        fieldSizeHeight - 5
+                );
             }
         }
 
-        img = null;
-        imgPath = "src/ch/zli/snakegame/41SGz-lSNLL._AC_SY1000_.jpg";
-        try{
-            img = ImageIO.read(new File(imgPath));
+        if (headImg != null){
+            int degrees = 0;
 
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+            if (this.direction == Direction.up){
+                degrees = 180;
+            }
+            else if (this.direction == Direction.left){
+                degrees = 90;
+            }
+            else if (this.direction == Direction.right){
+                degrees = -90;
+            }
+
+            double rotationRequired = Math.toRadians(degrees);
+            double locationX = headImg.getWidth() / 2.0;
+            double locationY = headImg.getHeight() / 2.0;
+            AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
+            AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+            BufferedImage newImage = op.filter(headImg,null);
+
+            g2d.drawImage(newImage.getScaledInstance(
+                            fieldSizeWidth,
+                            fieldSizeHeight, 1),
+                    this.snakePos.get(0).getX() * fieldSizeWidth + (offsetx / 2),
+                    this.snakePos.get(0).getY() * fieldSizeHeight + (offsety / 2),
+                    null
+            );
         }
-
-        g.setColor(Color.BLUE);
-        //g.drawImage(img.getScaledInstance(square - 4,square - 4,1), this.snakePos.get(0).getX() * square + (offset / 2)
-        //        , this.snakePos.get(0).getY() * square + (offset / 2), null);
-        g.fillArc(this.snakePos.get(0).getX() * square + (offset / 2), this.snakePos.get(0).getY() * square + (offset / 2), square, square, 0, 360);
+        else{
+            g2d.setColor(Color.GREEN);
+            g2d.fillArc(this.snakePos.get(0).getX() * fieldSizeWidth + (offsetx / 2),
+                    this.snakePos.get(0).getY() * fieldSizeHeight + (offsety / 2),
+                    fieldSizeWidth,
+                    fieldSizeHeight,
+                    0,
+                    360);
+        }
     }
 
     /**
-     * To get the headposition of the snake
+     * Get the headposition of the snake
      * @return the headposition of the snake
      */
     public Coord getSnakeHeadPos(){

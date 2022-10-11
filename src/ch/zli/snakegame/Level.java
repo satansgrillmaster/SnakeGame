@@ -44,12 +44,14 @@ public class Level {
      * @param g is the graphics2D
      */
     public void draw(JPanel panel, Graphics2D g){
-        int squareWidth = panel.getWidth() / 11;
-        int offset = panel.getWidth() % squareWidth;
+        int squareWidth = panel.getWidth() / this.desert.width;
+        int squareHeight = panel.getHeight() / this.desert.height;
+        int offsetx = panel.getWidth() % squareWidth;
+        int offsety = panel.getHeight() % squareHeight;
         desert.draw(panel, g);
-        snake.draw(g, squareWidth, offset);
-        obstacles.draw(g, squareWidth, offset);
-        foods.draw(g, squareWidth, offset);
+        snake.draw(g, squareWidth, squareHeight, offsetx, offsety);
+        obstacles.draw(g, squareWidth, squareHeight, offsetx, offsety);
+        foods.draw(g, squareWidth, squareHeight, offsetx, offsety);
     }
 
     /**

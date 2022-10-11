@@ -56,13 +56,13 @@ public class Obstacles {
     /**
      * Draws the obstacle as a black rect
      * @param g is the graphics2D to paint
-     * @param square is the width of a square in the panel
-     * @param offset is the amount of pixel we have left after all squares
+     * @param fieldSizeWidth is the width of a fieldSizeWidth in the panel
+     * @param offsetx is the amount of pixel we have left after all squares
      */
-    public void draw(Graphics2D g, int square, int offset){
+    public void draw(Graphics2D g, int fieldSizeWidth, int fieldSizeHeight, int offsetx, int offsety){
         g.setColor(Color.BLACK);
         for (Coord obstacle : obstaclesPos) {
-            g.fillRect(obstacle.getX() * square + 5 + (offset / 2), obstacle.getY() * square + 5 + (offset / 2), square - 10, square - 10);
+            g.fillRect(obstacle.getX() * fieldSizeWidth + 5 + (offsetx / 2), obstacle.getY() * fieldSizeHeight + 5 + (offsety / 2), fieldSizeWidth - 10, fieldSizeHeight - 10);
         }
     }
 

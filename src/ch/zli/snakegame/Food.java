@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 public class Food {
     private Coord position;
     private BufferedImage img = null;
-    private String imgPath = "src/ch/zli/snakegame/643464-my-pussy.jpg";
+    private String imgPath = "src/ch/zli/snakegame/imgs/maus.png";
 
 
     /**
@@ -31,19 +31,19 @@ public class Food {
     /**
      * Draws the food as a red rectangel
      * @param g is the graphics2D to paint
-     * @param square is the width of a square in the panel
-     * @param offset is the amount of pixel we have left after all squares
+     * @param fieldSizeWidth is the width of a fieldSizeWidth in the panel
+     * @param offsetx is the amount of pixel we have left after all squares
      */
-    public void draw(Graphics2D g, int square, int offset){
-        int x = position.getX() * square + 2 + (offset / 2);
-        int y = position.getY() * square + 2 + (offset / 2);
+    public void draw(Graphics2D g, int fieldSizeWidth, int fieldSizeHeight, int offsetx, int offsety){
+        int x = position.getX() * fieldSizeWidth + 2 + (offsetx / 2);
+        int y = position.getY() * fieldSizeHeight + 2 + (offsety / 2);
 
         if (img != null){
-            g.drawImage(img.getScaledInstance(square - 4,square - 4,1), x, y, null);
+            g.drawImage(img.getScaledInstance(fieldSizeWidth - 4,fieldSizeHeight - 4,1), x, y, null);
         }
         else {
             g.setColor(Color.RED);
-            g.fillRect(x, y, square - 4, square - 4);
+            g.fillRect(x, y, fieldSizeWidth - 4, fieldSizeHeight - 4);
         }
     }
 

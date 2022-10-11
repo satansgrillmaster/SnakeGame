@@ -14,6 +14,7 @@ public class SnakeGameLogic {
     private Level level = new Level();
     private int points;
     private int levelHeight = 1;
+    private int speedMultiplayer;
 
     /**
      * Constructor for the gamelogic
@@ -22,6 +23,8 @@ public class SnakeGameLogic {
     public SnakeGameLogic(SnakeGame game){
         this.game = game;
         this.points = 0;
+        this.speedMultiplayer = 30;
+
     }
 
     /**
@@ -45,7 +48,10 @@ public class SnakeGameLogic {
             }
         };
         timer = new Timer();
-        timer.scheduleAtFixedRate(timerTask, 2, (430 - (levelHeight * 30)));
+        if (levelHeight < 3){
+            speedMultiplayer += 10;
+        }
+        timer.scheduleAtFixedRate(timerTask, 2, (430 - (levelHeight * speedMultiplayer)));
     }
 
     /**
@@ -112,6 +118,6 @@ public class SnakeGameLogic {
         game.pauseGame();
         cancelTimer();
         initAfterLevelChanged();
-        this.level = new Level(levelHeight -1, levelHeight -1);
+        this.level = new Level(levelHeight -1, levelHeight);
     }
 }

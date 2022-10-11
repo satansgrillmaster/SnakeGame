@@ -14,8 +14,8 @@ public class Desert {
      * Constructor for the desert
      */
     public Desert(){
-        width = 11;
-        height = 11;
+        width = 15;
+        height = 15;
     }
 
     /**
@@ -24,7 +24,7 @@ public class Desert {
      * @param g is the graphics2D
      */
     public void draw(JPanel panel, Graphics2D g){
-        g.setColor(Color.YELLOW);
+        g.setColor(Color.lightGray);
         g.fillRect(0, 0, panel.getWidth(), panel.getHeight());
         g.setColor(Color.BLACK);
     }
