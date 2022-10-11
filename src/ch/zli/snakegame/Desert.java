@@ -4,26 +4,18 @@ import javax.swing.JPanel;
 import java.awt.Graphics2D;
 import java.awt.Color;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ch.zli.snakegame.util.Coord;
 import ch.zli.snakegame.util.Direction;
 
 public class Desert {
-    private List<Coord> desertField;
-
+    public final int width;
+    public final int height;
     /**
      * Constructor for the desert
      */
     public Desert(){
-        this.desertField = new ArrayList<>();
-
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                this.desertField.add(new Coord(j, i));
-            }
-        }
+        width = 11;
+        height = 11;
     }
 
     /**
@@ -44,17 +36,36 @@ public class Desert {
      * @return an object from the helpclass Coord
      */
     public Coord nextPos(Coord position, Direction direction){
+        int x = position.getX();
+        int y = position.getY();
 
         switch (direction) {
             case up:
-                return new Coord(position.getX(), position.getY() - 1);
+                y--;
+                break;
             case down:
-                return new Coord(position.getX(), position.getY() + 1);
+                y++;
+                break;
             case left:
-                return new Coord(position.getX() - 1, position.getY());
+                x--;
+                break;
             default:
-                return new Coord(position.getX() + 1, position.getY());
+                x++;
+                break;
+            }
+        if (x < 0) {
+            x = width - 1;
         }
-    }
+        if (y < 0){
+            y = height - 1;
+        }
+        if (x == width){
+            x = 0;
+        }
+        if (y == height){
+            y = 0;
+        }
 
+        return new Coord(x, y);
+    }
 }

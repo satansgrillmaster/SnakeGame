@@ -33,13 +33,13 @@ public class Obstacles {
      * @param snake the snake to be sure an random obstacle wont be placed on the snake
      */
     public Obstacles(int numberOfRandomObstacles, Snake snake){
-        for (int i = 0; i < 10; i++) {
+        /*for (int i = 0; i < 10; i++) {
 
             this.obstaclesPos.add(new Coord(0, i));
             this.obstaclesPos.add(new Coord(10, i));
             this.obstaclesPos.add(new Coord(i, 0));
             this.obstaclesPos.add(new Coord(i, 10));
-        }
+        }*/
         this.obstaclesPos.add(new Coord(10, 10));
 
         for (int i = 0; i < numberOfRandomObstacles; i++) {
