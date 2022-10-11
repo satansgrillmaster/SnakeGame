@@ -3,15 +3,20 @@ package ch.zli.snakegame;
 import java.awt.Graphics2D;
 import java.awt.Color;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import ch.zli.snakegame.util.Coord;
 
+import javax.imageio.ImageIO;
+
 public class Obstacles {
     private List<Coord> obstaclesPos = new ArrayList<>();
     private Random rn = new Random();
+    private BufferedImage obstacleImg;
 
     /**
      * The constructor for the obstacles
@@ -51,18 +56,29 @@ public class Obstacles {
 
             this.obstaclesPos.add(potentialCoord);
         }
+        try{
+            obstacleImg = ImageIO.read(new File("src/ch/zli/snakegame/imgs/obstacle.png"));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
      * Draws the obstacle as a black rect
-     * @param g is the graphics2D to paint
+     * @param g2d is the graphics2D to paint
      * @param fieldSizeWidth is the width of a fieldSizeWidth in the panel
      * @param offsetx is the amount of pixel we have left after all squares
      */
-    public void draw(Graphics2D g, int fieldSizeWidth, int fieldSizeHeight, int offsetx, int offsety){
-        g.setColor(Color.BLACK);
+    public void draw(Graphics2D g2d, int fieldSizeWidth, int fieldSizeHeight, int offsetx, int offsety){
+        g2d.setColor(Color.BLACK);
         for (Coord obstacle : obstaclesPos) {
-            g.fillRect(obstacle.getX() * fieldSizeWidth + 5 + (offsetx / 2), obstacle.getY() * fieldSizeHeight + 5 + (offsety / 2), fieldSizeWidth - 10, fieldSizeHeight - 10);
+            g2d.drawImage(obstacleImg.getScaledInstance(
+                            fieldSizeWidth,
+                            fieldSizeHeight, 1),
+                    obstacle.getX() * fieldSizeWidth + (offsetx / 2),
+                    obstacle.getY() * fieldSizeHeight + (offsety / 2),
+                    null
+            );
         }
     }
 

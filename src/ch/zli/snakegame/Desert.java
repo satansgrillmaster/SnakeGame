@@ -24,7 +24,7 @@ public class Desert {
      * @param g is the graphics2D
      */
     public void draw(JPanel panel, Graphics2D g){
-        g.setColor(Color.lightGray);
+        g.setColor(Color.white);
         g.fillRect(0, 0, panel.getWidth(), panel.getHeight());
         g.setColor(Color.BLACK);
     }
