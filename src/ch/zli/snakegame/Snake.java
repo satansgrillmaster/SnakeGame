@@ -3,11 +3,15 @@ package ch.zli.snakegame;
 import java.awt.Graphics2D;
 import java.awt.Color;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import ch.zli.snakegame.util.Coord;
 import ch.zli.snakegame.util.Direction;
+
+import javax.imageio.ImageIO;
 
 
 public class Snake {
@@ -38,14 +42,35 @@ public class Snake {
      */
     public void draw(Graphics2D g, int square, int offset){
         g.setColor(Color.GREEN);
+        BufferedImage img = null;
+        String imgPath = "src/ch/zli/snakegame/body.png";
+
+        try{
+            img = ImageIO.read(new File(imgPath));
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
         for (Coord bodypart : snakePos) {
             if (bodypart != this.snakePos.get(0)) {
-                g.fillArc(bodypart.getX() * square + (offset / 2), bodypart.getY() * square + (offset / 2), square, square, square, 360);
+                g.drawImage(img.getScaledInstance(square - 4,square - 4,1), bodypart.getX() * square + (offset / 2)
+                        , bodypart.getY() * square + (offset / 2), null);
             }
         }
 
+        img = null;
+        imgPath = "src/ch/zli/snakegame/41SGz-lSNLL._AC_SY1000_.jpg";
+        try{
+            img = ImageIO.read(new File(imgPath));
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
         g.setColor(Color.BLUE);
+        //g.drawImage(img.getScaledInstance(square - 4,square - 4,1), this.snakePos.get(0).getX() * square + (offset / 2)
+        //        , this.snakePos.get(0).getY() * square + (offset / 2), null);
         g.fillArc(this.snakePos.get(0).getX() * square + (offset / 2), this.snakePos.get(0).getY() * square + (offset / 2), square, square, 0, 270);
     }
 

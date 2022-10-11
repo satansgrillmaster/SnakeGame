@@ -33,7 +33,7 @@ public class Food {
         System.out.println(square - 4);
 
         BufferedImage img = null;
-        String imgPath = "src/ch/zli/snakegame/smile.png";
+        String imgPath = "src/ch/zli/snakegame/643464-my-pussy.jpg";
 
         try{
             img = ImageIO.read(new File(imgPath));
@@ -48,6 +48,7 @@ public class Food {
             g.setColor(Color.RED);
             g.fillRect(x, y, square - 4, square - 4);
         }
+        g.dispose();
     }
 
     /**
