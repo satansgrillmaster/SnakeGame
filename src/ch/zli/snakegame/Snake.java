@@ -31,17 +31,20 @@ public class Snake {
         this.direction = Direction.down;
         this.oldDirection = Direction.down;
         this.eat = false;
-        for(int $i = 0; $i < 4; $i++){
+        for (int $i = 0; $i < 4; $i++){
             this.snakePos.add(new Coord(5, 5 - $i));
         }
 
         /*load the image for the head*/
-        try{
+        try
+        {
             headImg = ImageIO.read(new File("src/ch/zli/snakegame/imgs/snakehead.png"));
 
-
-        }catch (Exception e){
+        }
+        catch (Exception e)
+        {
             System.out.println(e.getMessage());
+            headImg = null;
         }
     }
 
@@ -69,6 +72,7 @@ public class Snake {
             }
         }
 
+        /* if there's a headimg, draw the img, otherwise draw a default head*/
         if (headImg != null){
             int degrees = 0;
 
@@ -98,7 +102,7 @@ public class Snake {
             );
         }
         else{
-            g2d.setColor(Color.GREEN);
+            g2d.setColor(Color.BLACK);
             g2d.fillArc(this.snakePos.get(0).getX() * fieldSizeWidth + (offsetx / 2),
                     this.snakePos.get(0).getY() * fieldSizeHeight + (offsety / 2),
                     fieldSizeWidth,
