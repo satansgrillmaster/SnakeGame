@@ -30,7 +30,7 @@ public class Level {
      */
     public Level(int numberOfObstacles, int numberOfFood){
 
-        obstacles = new Obstacles(numberOfObstacles, snake);
+        obstacles = new Obstacles(numberOfObstacles, snake, desert.width, desert.height);
 
         for (int i = 0; i < numberOfFood; i++) {
             foods.addFood(createFood());
@@ -62,7 +62,7 @@ public class Level {
         Coord pos;
 
         do {
-            pos =  new Coord(rn.nextInt(9 - 1 + 1) + 1, rn.nextInt(9 - 1 + 1) + 1);
+            pos =  new Coord(rn.nextInt(desert.height), rn.nextInt(desert.width));
         } while(foods.intersectsWith(pos) || obstacles.intersectsWith(pos) || snake.intersects(pos));
         return new Food(pos);
     }

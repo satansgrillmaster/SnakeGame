@@ -37,21 +37,12 @@ public class Obstacles {
      * @param numberOfRandomObstacles number of additionally placed obstacles
      * @param snake the snake to be sure an random obstacle wont be placed on the snake
      */
-    public Obstacles(int numberOfRandomObstacles, Snake snake){
-        /*for (int i = 0; i < 10; i++) {
-
-            this.obstaclesPos.add(new Coord(0, i));
-            this.obstaclesPos.add(new Coord(10, i));
-            this.obstaclesPos.add(new Coord(i, 0));
-            this.obstaclesPos.add(new Coord(i, 10));
-        }*/
-        // this.obstaclesPos.add(new Coord(10, 10));
-
+    public Obstacles(int numberOfRandomObstacles, Snake snake, int desertSizeWidth, int desertSizeHeight){
         for (int i = 0; i < numberOfRandomObstacles; i++) {
 
             Coord potentialCoord = null;
             do {
-                potentialCoord = new Coord(rn.nextInt(9 - 1 + 1) + 1, rn.nextInt(9 - 1 + 1) + 1);
+                potentialCoord = new Coord(rn.nextInt(desertSizeWidth), rn.nextInt(desertSizeHeight));
             } while (snake.intersects(potentialCoord) || intersectsWith(potentialCoord));
 
             this.obstaclesPos.add(potentialCoord);

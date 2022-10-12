@@ -30,10 +30,10 @@ public class SnakeGameLogic {
     /**
      * We need that so it can delegate to the level to draw
      * @param panel is the panel to paint on
-     * @param g is the graphics2D
+     * @param g2d is the graphics2D
      */
-    public void draw(JPanel panel, Graphics2D g){
-        level.draw(panel, g);
+    public void draw(JPanel panel, Graphics2D g2d){
+        level.draw(panel, g2d);
     }
 
     /**

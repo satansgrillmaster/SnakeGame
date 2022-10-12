@@ -39,7 +39,6 @@ public class Snake {
         try
         {
             headImg = ImageIO.read(new File("src/ch/zli/snakegame/imgs/snakehead.png"));
-
         }
         catch (Exception e)
         {
