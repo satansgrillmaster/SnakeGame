@@ -31,13 +31,13 @@ public class Foods {
 
     /**
      * Draws every single food
-     * @param g is the graphics2D to paint
+     * @param g2d is the graphics2D to paint
      * @param fieldSizeWidth is the width of a fieldSizeWidth in the panel
      * @param offsetx is the amount of pixel we have left after all squares
      */
-    public void draw(Graphics2D g, int fieldSizeWidth,int fieldSizeHeight, int offsetx, int offsety) {
+    public void draw(Graphics2D g2d, int fieldSizeWidth,int fieldSizeHeight, int offsetx, int offsety) {
         for (Food food : foodList) {
-            food.draw(g, fieldSizeWidth, fieldSizeHeight, offsetx, offsety);
+            food.draw(g2d, fieldSizeWidth, fieldSizeHeight, offsetx, offsety);
         }
     }
 

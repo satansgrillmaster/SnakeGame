@@ -21,12 +21,12 @@ public class Desert {
     /**
      * Draws the desert with a yellow background (typical for a desert)
      * @param panel is the panel to paint on
-     * @param g is the graphics2D
+     * @param g2d is the graphics2D
      */
-    public void draw(JPanel panel, Graphics2D g){
-        g.setColor(Color.white);
-        g.fillRect(0, 0, panel.getWidth(), panel.getHeight());
-        g.setColor(Color.BLACK);
+    public void draw(JPanel panel, Graphics2D g2d){
+        g2d.setColor(Color.white);
+        g2d.fillRect(0, 0, panel.getWidth(), panel.getHeight());
+        g2d.setColor(Color.BLACK);
     }
 
     /**

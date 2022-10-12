@@ -34,6 +34,8 @@ public class Snake {
         for(int $i = 0; $i < 4; $i++){
             this.snakePos.add(new Coord(5, 5 - $i));
         }
+
+        /*load the image for the head*/
         try{
             headImg = ImageIO.read(new File("src/ch/zli/snakegame/imgs/snakehead.png"));
 
@@ -107,8 +109,8 @@ public class Snake {
     }
 
     /**
-     * Get the headposition of the snake
-     * @return the headposition of the snake
+     * Get the headpos of the snake
+     * @return the headpos of the snake
      */
     public Coord getSnakeHeadPos(){
         return snakePos.get(0);

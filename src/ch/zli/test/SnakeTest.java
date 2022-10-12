@@ -36,15 +36,6 @@ public class SnakeTest {
     }
 
     @Test
-    public void ultimateMoveTest(){
-        Desert desert = new Desert();
-        snake.setDirection(Direction.right);
-        Coord nextPos = desert.nextPos(snake.getSnakeHeadPos(), snake.getDirection());
-        snake.move(nextPos);
-        assertEquals(new Coord(6, 5), snake.getSnakeHeadPos());
-    }
-
-    @Test
     public void selfColissionTest(){
         snake.move(new Coord(5, 4));
         assertTrue(snake.selfColission());

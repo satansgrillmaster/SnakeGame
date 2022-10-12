@@ -41,17 +41,17 @@ public class Level {
     /**
      * Draws the the level and everything in it
      * @param panel is the panel to paint on
-     * @param g is the graphics2D
+     * @param g2d is the graphics2D
      */
-    public void draw(JPanel panel, Graphics2D g){
+    public void draw(JPanel panel, Graphics2D g2d){
         int squareWidth = panel.getWidth() / this.desert.width;
         int squareHeight = panel.getHeight() / this.desert.height;
         int offsetx = panel.getWidth() % squareWidth;
         int offsety = panel.getHeight() % squareHeight;
-        desert.draw(panel, g);
-        snake.draw(g, squareWidth, squareHeight, offsetx, offsety);
-        obstacles.draw(g, squareWidth, squareHeight, offsetx, offsety);
-        foods.draw(g, squareWidth, squareHeight, offsetx, offsety);
+        desert.draw(panel, g2d);
+        snake.draw(g2d, squareWidth, squareHeight, offsetx, offsety);
+        obstacles.draw(g2d, squareWidth, squareHeight, offsetx, offsety);
+        foods.draw(g2d, squareWidth, squareHeight, offsetx, offsety);
     }
 
     /**
